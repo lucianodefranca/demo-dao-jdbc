@@ -20,8 +20,24 @@ public class Program2 {
 		System.out.println(dep);
 		
 		System.out.println("===== TEST 2: findAll department ======");
-		List<Department> depList = departmentDao.findAll();
-		System.out.println(depList);
+		List<Department> list = departmentDao.findAll();
+		for (Department department : list) {
+			System.out.println(department);
+		}
+		
+//		System.out.println("===== TEST 3: Insert department ======");
+//		Department newDep = new Department(null, "Tools");
+//		departmentDao.insert(newDep);
+//		System.out.println("Insert completed!");
+		
+		System.out.println();
+		
+		System.out.println("===== TEST 4: DeleteById department ======");
+		System.out.println("Enter Id for delete test: ");
+		int id = sc.nextInt();
+		departmentDao.deleteById(id);
+		System.out.println("Delete executed!");
+		
 		
 	
 		
