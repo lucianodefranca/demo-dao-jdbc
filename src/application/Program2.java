@@ -1,6 +1,7 @@
 package application;
 
 import java.text.ParseException;
+import java.util.List;
 import java.util.Scanner;
 
 import model.dao.DaoFactory;
@@ -17,6 +18,11 @@ public class Program2 {
 		System.out.println("===== TEST 1: findById department ======");
 		Department dep = departmentDao.findById(1);
 		System.out.println(dep);
+		
+		System.out.println("===== TEST 2: findAll department ======");
+		List<Department> depList = departmentDao.findAll();
+		System.out.println(depList);
+		
 	
 		
 		sc.close();

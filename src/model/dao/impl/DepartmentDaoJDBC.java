@@ -3,6 +3,7 @@ package model.dao.impl;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.mysql.jdbc.PreparedStatement;
@@ -67,13 +68,36 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 			DB.closeStatement(st);
 			DB.closeResultSet(rs);
 		}
-		
 	}
 
 	@Override
 	public List<Department> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		try {
+			st = (PreparedStatement) conn.prepareStatement(
+					"SELECT * FROM department");
+			
+			rs = st.executeQuery();
+			
+			List<Department> list = new ArrayList<>();
+			
+			while (rs.next()) {
+				Department obj = new Department();
+				obj.setId(rs.getInt("Id"));
+				obj.setName(rs.getString("Name"));
+				list.add(obj);
+			}
+			return list;
+		} 
+		catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeStatement(st);
+			DB.closeResultSet(rs);
+		}
 	}
 
 }
